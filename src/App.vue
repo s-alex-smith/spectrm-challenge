@@ -1,29 +1,19 @@
 <template>
 <div>
   <h1>"Ich bin ein Berliner!"</h1>
-  <button @click="testlog">Test Log</button>
-  <donut-chart-card :profiles="profiles" />
-  <!-- <DonutChartCard /> -->
+  <donut-all-data :profiles="profiles" />
   </div>
 </template>
 
 <script>
-import DonutChartCard from '@/components/DonutChartCard.vue'
+import DonutAllData from './components/DonutAllData.vue';
 
 export default {
   name: 'App',
 
   components: {
-    DonutChartCard
+    DonutAllData
   },
-
-
-  methods: {
-    testConsole() {
-      console.log("THIS BETTER FUCKING WORK!");
-    }
-  },
-
 
   data() {
     return {
