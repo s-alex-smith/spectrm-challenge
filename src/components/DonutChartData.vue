@@ -15,12 +15,52 @@ export default {
   name: "donut-chart-data",
   
   props: {
-   dataObject: Object
+   dataObject: Object,
+   totalLabel: String
   },
 
   data(props) {
     let chartOptions = { labels: [] };
-    chartOptions.labels = props.dataObject.labels;
+
+    chartOptions = {
+      labels: props.dataObject.labels,
+      colors: ["#c5366e", "#85adff", "#502579"],
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: true,
+        floating: false,
+        position: "right",
+        horizontalAlign: "center",
+      },
+      plotOptions: {
+        pie: {
+          customScale: 0.8,
+          donut: {
+            size: "65%",
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                offsetY: 30,
+              },
+              value: {
+                offsetY: -30,
+                fontWeight: 600,
+                fontSize: "2.5em"
+              },
+              total: {
+                show: true,
+                label: props.totalLabel,
+                fontSize: "1.75em",
+                color: "black"
+                }
+            },
+          },
+        },
+      }
+    }
 
     return {
       chartOptions
@@ -32,21 +72,10 @@ export default {
 };
 
 </script>
- <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/* h3 {
-  margin: 40px 0 0;
+
+<style>
+.apexcharts-legend {
+  text-align: left;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
 </style>
 

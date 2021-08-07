@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="app">
   <h1>"Ich bin ein Berliner!"</h1>
     <div v-for="profile in profiles" :key="profile.index">
         <donut-chart-card :profile="profile" @clone="clone" :index="profile.index"/>
@@ -39,7 +39,6 @@ export default {
               }
           }
       });
-
     return {
         profiles
     }
@@ -49,12 +48,19 @@ export default {
 </script>
 
 <style>
-#app {
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #08396b;
+  margin-top: 4em;
+  align-self: center;
+  font-weight: bold;
+}
+
+.h1 {
+    border-bottom: 0.1em solid #08396b;
+    margin: 0 12em 1em 12em;
 }
 </style>
