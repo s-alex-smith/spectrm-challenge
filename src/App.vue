@@ -1,80 +1,50 @@
 <template>
 <div>
   <h1>"Ich bin ein Berliner!"</h1>
-  <donut-all-data :profiles="profiles" />
+    <div v-for="profile in profiles" :key="profile.index">
+        <donut-chart-card :profile="profile" @clone="clone" :index="profile.index"/>
+    </div>
   </div>
 </template>
 
 <script>
-import DonutAllData from './components/DonutAllData.vue';
+import DonutChartCard from './components/DonutChartCard.vue';
+import data from './static/data.json';
 
 export default {
+
   name: 'App',
 
   components: {
-    DonutAllData
+    DonutChartCard
+
+  },
+
+  methods: {
+      clone(index) {
+          this.profiles.push(this.profiles[index])
+      }
   },
 
   data() {
+      let jsonProfiles = data.profiles;
+      let profiles = jsonProfiles.map((profile, index) => {
+          return {
+              index: index,
+              title: profile.title,
+              totalLabel: profile.totalLabel,
+              dataObject: {
+                  series: profile.data.map(series => series.value),
+                  labels: profile.data.map(label => label.label)
+              }
+          }
+      });
+
     return {
-    "profiles": [
-        {
-            "title": "Gender",
-            "totalLabel": "Total Users",
-            "data": [
-                {
-                    "label": "Female",
-                    "value": 50
-                },
-                {
-                    "label": "Male",
-                    "value": 35
-                },
-                {
-                    "label": "Diverse",
-                    "value": 15
-                }
-            ]
-        },
-        {
-            "title": "Age Range",
-            "totalLabel": "Total Users",
-            "data": [
-                {
-                    "label": "Below 25",
-                    "value": 20
-                },
-                {
-                    "label": "Between 25 and 40",
-                    "value": 67
-                },
-                {
-                    "label": "Above 40",
-                    "value": 13
-                }
-            ]
-        },
-        {
-            "title": "Country",
-            "totalLabel": "Total Users",
-            "data": [
-                {
-                    "label": "Costa Rica",
-                    "value": 22
-                },
-                {
-                    "label": "India",
-                    "value": 37
-                },
-                {
-                    "label": "Canada",
-                    "value": 41
-                }
-            ]
-        }
-    ]
-}
+        profiles
+    }
   }
+  
 }
 </script>
 

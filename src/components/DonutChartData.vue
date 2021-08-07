@@ -1,6 +1,6 @@
 <template>
   <div>
-    <apexchart width="500" type="donut" :options="chartOptions" :series="chartSeries"></apexchart>
+    <apexchart width="500" type="donut" :options="chartOptions" :series="dataObject.series"></apexchart>
   </div>
 </template>
 
@@ -12,22 +12,18 @@ Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
 
 export default {
-  name: "donut-chart-card-single-data",
+  name: "donut-chart-data",
   
   props: {
-    profile: Object
+   dataObject: Object
   },
 
   data(props) {
-    let chartSeries = [];
     let chartOptions = { labels: [] };
-
-    props.profile.data.map(i => chartSeries.push(i.value))
-    props.profile.data.map(i => chartOptions.labels.push(i.label))
+    chartOptions.labels = props.dataObject.labels;
 
     return {
-      chartSeries,
-      chartOptions,
+      chartOptions
     }
   }
 
