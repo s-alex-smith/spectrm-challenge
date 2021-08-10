@@ -1,5 +1,7 @@
 # Spectrm Challenge
 
+Live version: https://trusting-borg-350895.netlify.app/
+
 A simple app built using Vue that displays some data in the form of a donut chart. Each chart/widget displays the total data, individual data and has a legend to describe what the data represents. There is also a menu icon which displays a 'clone' button, which when clicked copies the chart and displays it at the bottom of the list. Once clicked, the original chart cannot be cloned again.
 
 ## Installation
